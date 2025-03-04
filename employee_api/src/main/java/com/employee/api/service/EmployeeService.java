@@ -16,34 +16,34 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     /**
-     *
+     * Get an employee based on the id
      * @param id
-     * @return
+     * @return An object employee
      */
     public Optional<Employee> getEmployee(final Long id) {
         return employeeRepository.findById(id);
     }
 
     /**
-     *
-     * @return
+     * Get the list of all employees
+     * @return a list of all employees
      */
     public Iterable<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
 
     /**
-     *
-     * @param id
+     * Delete an employee
+     * @param id of the employee to be deleted
      */
     public void deleteEmployee(final Long id) {
         employeeRepository.deleteById(id);
     }
 
     /**
-     *
+     * Save an employee in the Database
      * @param employee
-     * @return
+     * @return the Object employee saved
      */
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
