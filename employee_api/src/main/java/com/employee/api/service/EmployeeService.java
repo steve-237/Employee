@@ -17,7 +17,7 @@ public class EmployeeService {
 
     /**
      * Get an employee based on the id
-     * @param id
+     * @param id - of the employee
      * @return An object employee
      */
     public Optional<Employee> getEmployee(final Long id) {
@@ -42,7 +42,7 @@ public class EmployeeService {
 
     /**
      * Save an employee in the Database
-     * @param employee
+     * @param employee - employee saved
      * @return the Object employee saved
      */
     public Employee saveEmployee(Employee employee) {
