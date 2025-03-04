@@ -23,7 +23,7 @@ public class EmployeeControllerIntegrationTest {
     public void testGetEmployees() throws Exception {
         mockMvc.perform(get("/employees"))
                 .andDo(print())
-                .andExpect(status().isOk());
-                //.andExpect(jsonPath("$[0].firstName", is("Laurent")));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].firstName", is("Laurent")));
     }
 }
