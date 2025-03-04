@@ -35,22 +35,22 @@ public class EmployeeController {
         if (employeeOptional.isPresent()) {
             Employee employeeToUpdate = employeeOptional.get();
 
-            String firstName = employeeToUpdate.getFirstName();
+            String firstName = employee.getFirstName();
             if(firstName != null && !firstName.isEmpty()) {
                 employeeToUpdate.setFirstName(firstName);
             }
 
-            String lastName = employeeToUpdate.getLastName();
+            String lastName = employee.getLastName();
             if(lastName != null && !lastName.isEmpty()) {
                 employeeToUpdate.setLastName(lastName);
             }
 
-            String mail = employeeToUpdate.getMail();
+            String mail = employee.getMail();
             if(mail != null && !mail.isEmpty()) {
                 employeeToUpdate.setMail(mail);
             }
 
-            String password = employeeToUpdate.getPassword();
+            String password = employee.getPassword();
             if(password != null && !password.isEmpty()) {
                 employeeToUpdate.setPassword(password);
             }
