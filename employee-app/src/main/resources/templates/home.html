@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Web Application</title>
+</head>
+<body>
+<h4><a th:href="@{/createEmployee}">Add new employee</a></h4>
+<h2 class="h2">List of employees</h2>
+<table>
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${employees.isEmpty()}">
+        <td colspan="3">No employee in the Data Base</td>
+    </tr>
+    <tr th:each="employee: ${employees}">
+        <td><span th:text="${employee.firstName}"> First Name </span></td>
+        <td><span th:text="${employee.lastName}"> Last Name </span></td>
+        <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}">Delete</a>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
