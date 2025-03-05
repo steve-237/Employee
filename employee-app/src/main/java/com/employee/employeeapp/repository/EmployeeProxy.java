@@ -1,5 +1,7 @@
 package com.employee.employeeapp.repository;
 
+import org.springframework.web.client.HttpClientErrorException;
+
 import com.employee.employeeapp.CustomProperties;
 import com.employee.employeeapp.model.Employee;
 import lombok.extern.slf4j.Slf4j;
@@ -86,16 +88,29 @@ public class EmployeeProxy {
     }
 
     public void deleteEmployee(int id) {
+        if (id <= 0) {
+            log.warn("Try to delete an employee with an invalid ID : {}", id);
+            return;
+        }
+
+        RestTemplate restTemplate = new RestTemplate();
+
         String baseApiUrl = props.getApiUrl();
         String deleteEmployeeUrl = baseApiUrl + "/employee/" + id;
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Void> response = restTemplate.exchange(
-                deleteEmployeeUrl,
-                HttpMethod.DELETE,
-                null,
-                Void.class);
+        try {
+            ResponseEntity<Void> response = restTemplate.exchange(
+                    deleteEmployeeUrl,
+                    HttpMethod.DELETE,
+                    null,
+                    Void.class
+            );
 
-        log.debug("Delete Employee call {}", response.getStatusCode());
+            log.debug("Delete Employee call successful: {}", response.getStatusCode());
+        } catch (HttpClientErrorException.NotFound e) {
+            log.error("Employee with ID {} doesn't exist. Delete cancel.", id);
+        } catch (Exception e) {
+            log.error("Error deleting the employee with the ID {} : {}", id, e.getMessage());
+        }
     }
 }

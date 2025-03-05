@@ -48,7 +48,7 @@ public class EmployeeController {
 
     @PostMapping("/saveEmployee")
     public ModelAndView saveEmployee(@ModelAttribute Employee employee) {
-        if((Integer) employee.getId() != null) {
+        if(employee.getId() > 0) {
             Employee current = employeeService.getEmployee(employee.getId());
             employee.setPassword(current.getPassword());
         }
