@@ -51,7 +51,51 @@ public class EmployeeProxy {
         return response.getBody();
     }
 
-    public Employee updateEmployee(Employee employee) {
-        return null;
+    public Employee getEmployee(int id) {
+        String baseApiUrl = props.getApiUrl();
+        String getEmployeeUrl = baseApiUrl + "/employee/" + id;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Employee> response = restTemplate.exchange(
+                getEmployeeUrl,
+                HttpMethod.GET,
+                null,
+                Employee.class
+        );
+
+        log.debug("Get Employee call {}", response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+    public Employee updateEmployee(Employee e) {
+        String baseApiUrl = props.getApiUrl();
+        String updateEmployeeUrl = baseApiUrl + "/employee/" + e.getId();
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<Employee> request = new HttpEntity<Employee>(e);
+        ResponseEntity<Employee> response = restTemplate.exchange(
+                updateEmployeeUrl,
+                HttpMethod.PUT,
+                request,
+                Employee.class);
+
+        log.debug("Update Employee call {}", response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+    public void deleteEmployee(int id) {
+        String baseApiUrl = props.getApiUrl();
+        String deleteEmployeeUrl = baseApiUrl + "/employee/" + id;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Void> response = restTemplate.exchange(
+                deleteEmployeeUrl,
+                HttpMethod.DELETE,
+                null,
+                Void.class);
+
+        log.debug("Delete Employee call {}", response.getStatusCode());
     }
 }

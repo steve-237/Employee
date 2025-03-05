@@ -32,4 +32,12 @@ public class EmployeeService {
                 : employeeProxy.updateEmployee(employee);
     }
 
+    public Employee getEmployee(Integer id) {
+        return employeeProxy.getEmployee(id);
+    }
+
+    public void deleteEmployee(Integer id) {
+        employeeProxy.deleteEmployee(id);
+    }
+
 }
