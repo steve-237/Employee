@@ -27,7 +27,7 @@ public class EmployeeService {
             employee.setLastName(employee.getLastName().toUpperCase());
         }
 
-        return ((Integer) employee.getId() == null)
+        return (employee.getId() <= 0)
                 ? employeeProxy.createEmployee(employee)
                 : employeeProxy.updateEmployee(employee);
     }
