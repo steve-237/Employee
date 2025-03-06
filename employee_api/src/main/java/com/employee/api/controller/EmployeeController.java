@@ -84,7 +84,7 @@ public class EmployeeController {
      * Delete an employee
      * @param id of the employee to be deleted
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/employee/{id}")
     public void deleteEmployee(@PathVariable("id") final Long id) {
         employeeService.deleteEmployee(id);
     }
